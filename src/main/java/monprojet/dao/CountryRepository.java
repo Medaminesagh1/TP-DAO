@@ -14,9 +14,8 @@ import monprojet.projections.populationParPays;
 
 public interface CountryRepository extends JpaRepository<Country, Integer> {
     @Query(value="Select SUM(population) as population "
-        + " From Country " 
-        +" inner join CITY ON Country.id=CITY.country_id  "
-        +" Where Country.id= :idCountry ",
+        + " From CITY " 
+        +" Where country_id= :idCountry ",
         nativeQuery = true)
         public int populationPays(int idCountry);
     @Query(value=" Select Country.name as nom , SUM(population) as population "
