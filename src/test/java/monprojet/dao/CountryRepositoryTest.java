@@ -10,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 import monprojet.entity.*;
+import monprojet.projections.populationParPays;
+
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.jdbc.Sql;
 
@@ -22,12 +24,18 @@ public class CountryRepositoryTest {
 
     @Test
     void sommeDePopulation(){
-        countryDAO.populationPays(1);
+        log.info("On calcule la population d'un pays");
+        int population = countryDAO.populationPays(1);
+        assertEquals(population, 12, "La population doit être de 12");
+        
     }
 
     @Test 
-    void paysPopulation(){
-        countryDAO.nomPaysPopulation();
+    void populationParPays(){
+        log.info("On récupère la liste des pays avec leur population");
+        List<populationParPays> res = countryDAO.populationParPays();
+        assertEquals(res.size(), 3, "Il n'y a pas le bon nombre de pays");
+        
     }
     @Test
     void lesNomsDePaysSontTousDifferents() {

@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import monprojet.entity.City;
 import monprojet.entity.Country;
 
+import monprojet.projections.populationParPays;
+
 // This will be AUTO IMPLEMENTED by Spring 
 
 public interface CountryRepository extends JpaRepository<Country, Integer> {
@@ -22,10 +24,6 @@ public interface CountryRepository extends JpaRepository<Country, Integer> {
         +" inner join CITY ON Country.id=CITY.country_id "
         +" Group By Country.name ",
         nativeQuery = true)
-        public List<countryAndPoupulation> nomPaysPopulation();
-        
-        public interface countryAndPoupulation {
-         String getNom();
-         int getPopulation();       
-        }   
+        public List<populationParPays> populationParPays();
+           
 }
