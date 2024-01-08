@@ -21,6 +21,15 @@ public class CountryRepositoryTest {
     private CountryRepository countryDAO;
 
     @Test
+    void sommeDePopulation(){
+        countryDAO.populationPays(1);
+    }
+
+    @Test 
+    void paysPopulation(){
+        countryDAO.nomPaysPopulation();
+    }
+    @Test
     void lesNomsDePaysSontTousDifferents() {
         log.info("On vérifie que les noms de pays sont tous différents ('unique') dans la table 'Country'");
         
